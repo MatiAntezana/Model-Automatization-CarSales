@@ -14,7 +14,6 @@ logging.basicConfig(
 )
 logging.info("Se guardo correctamente el log")
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Ejecutar experimentos de machine learning')
     parser.add_argument('--model', type=str, required=True, help='Ruta al archivo de configuración del modelo')
