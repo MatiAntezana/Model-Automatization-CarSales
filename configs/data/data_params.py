@@ -1,7 +1,8 @@
 # Porcentajes
 param_sets = {
-    "Set_Train":0.60, 
-    "Set_Valid":0.30,
-    "Set_Test":0.10,
+    "Set_Train":0.70, 
+    "Set_Valid":0.00,
+    "Set_Test":0.30,
 }
 path_dataset = "dataset/pf_suvs_i302_1s2024.csv"
+seed_random = 12
