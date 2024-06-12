@@ -52,7 +52,6 @@ class Random_Forest:
                         ('regressor', self.func_model)])
         
         self.model.fit(X, Y)
-        
 
 def create_model(model_params):
     return Random_Forest(n_estimators=model_params.n_estimators, random_state=model_params.random_state)
