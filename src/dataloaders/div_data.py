@@ -1,5 +1,8 @@
 import logging
 from src.utils.trasform_ruth_module import modularization_ruth
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split,GridSearchCV
+import numpy as np
 
 def get_dataloader(features, data_used, features_used, type_set, initial_index):
     # Obtiene el set especifico, los mezcla y aplica la función correspondiente
@@ -21,8 +24,6 @@ def get_dataloader(features, data_used, features_used, type_set, initial_index):
 
     final_set = final_set.sample(frac=1, random_state=seed).reset_index(drop=True)
 
-    file_modify_data = modularization_ruth(f"models/{features_used.file_modify_data}")
-
-    file_modify_data.data_modify(features_used, final_set)
+    
 
     return final_set, final_index

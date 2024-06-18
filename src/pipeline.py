@@ -7,8 +7,8 @@ from src.dataloaders.div_data import get_dataloader
 from src.train_and_test.train import train_model
 from src.train_and_test.test import test_model
 
-from src.models.initial_model import load_model
-from src.models.save_model import model_save_in_folder
+from src.config_models.initial_model import load_model
+from src.config_models.save_model import model_save_in_folder, model_save_result
 
 def run_experiment(model_params, data_used, features_used):
 
@@ -17,7 +17,7 @@ def run_experiment(model_params, data_used, features_used):
     logging.info("Se creo correctamente la carpeta nueva y el archivo con los parametros")
 
     # Extrae los features
-    features = extract_features(data_used.path_dataset, features_used.features_use)
+    features = extract_features(data_used.path_dataset, features_used)
     logging.info("Se extrajo correctamente los features")
 
     # Divide los sets
@@ -36,6 +36,8 @@ def run_experiment(model_params, data_used, features_used):
     logging.info("Comienza el testeo")
     test_model(model, set_test)
     logging.info("Se realizó correctamente el testeo")
+
+    model_save_result(model, route_folder)
 
     model_save_in_folder(model, route_folder)
     logging.info("Se guardó correctamente el modelo")
