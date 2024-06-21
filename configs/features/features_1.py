@@ -1,10 +1,11 @@
 features_delete = [
     "Marca",
-    "Motor",
     "Modelo",
     "Versión",
+    "Año",
     "Tipo de carrocería",
     "Título",
+    "Motor",
     "Con cámara de retroceso",
     "Color",
     "Moneda"
@@ -20,6 +21,8 @@ features_standar = [
     "Kilómetros"
 ]
 
-file_modify_data = "Modify_data.py"
+relation_marca_version = False
+transform_color = False
+
 price_type = "Dolar"
-value_dolar = 866.46
+value_dolar = 1040

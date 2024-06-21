@@ -19,7 +19,8 @@ features_one_hot = [
 features_standar = [
     "Kilómetros"
 ]
+relation_marca_version = True
+transform_color = True
 
-file_modify_data = "Modify_data.py"
 price_type = "Dolar"
-value_dolar = 866.46
+value_dolar = 1040

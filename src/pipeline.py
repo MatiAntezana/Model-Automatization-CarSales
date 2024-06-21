@@ -8,7 +8,7 @@ from src.train_and_test.train import train_model
 from src.train_and_test.test import test_model
 
 from src.config_models.initial_model import load_model
-from src.config_models.save_model import model_save_in_folder, model_save_result
+from src.config_models.save_model import model_save_in_folder, model_save_result, model_save_best_params_of_params
 
 def run_experiment(model_params, data_used, features_used):
 
@@ -33,11 +33,16 @@ def run_experiment(model_params, data_used, features_used):
     train_model(model, set_train)
     logging.info("Se realizó correctamente el entrenamiento")
 
+    print("El score llegado es:",model.best_score)
+    print("Los mejores param son:",model.best_param)
+
     logging.info("Comienza el testeo")
     test_model(model, set_test)
     logging.info("Se realizó correctamente el testeo")
 
     model_save_result(model, route_folder)
+
+    model_save_best_params_of_params(model, route_folder)
 
     model_save_in_folder(model, route_folder)
     logging.info("Se guardó correctamente el modelo")

@@ -1,0 +1,4 @@
+2024-06-21 17:52:20,703 - root - INFO - Se guardo correctamente el log
+2024-06-21 17:52:20,708 - root - INFO - Se creo correctamente la carpeta nueva y el archivo con los parametros
+2024-06-21 17:52:21,909 - root - INFO - Se extrajo correctamente los features
+2024-06-21 17:52:21,917 - root - INFO - Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos
