@@ -18,12 +18,17 @@ features_one_hot = [
     "Tipo de vendedor",
 ]
 
+features_label_encoder = [
+    
+]
+
 features_standar = [
 ]
 
 relation_marca_version = False
 transform_color = False
 transform_years = False
+transform_proba = False
 
 price_type = "Dolar"
 value_dolar = 1040

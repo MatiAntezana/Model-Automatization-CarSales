@@ -1,10 +1,10 @@
-2024-06-21 17:59:01,392 - root - INFO - Se guardo correctamente el log
-2024-06-21 17:59:01,394 - root - INFO - Se creo correctamente la carpeta nueva y el archivo con los parametros
-2024-06-21 17:59:02,056 - root - INFO - Se extrajo correctamente los features
-2024-06-21 17:59:02,059 - root - INFO - Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos
-2024-06-21 17:59:02,098 - root - INFO - Se inicio el modelo correctamente
-2024-06-21 17:59:02,098 - root - INFO - Comienza el entrenamiento
-2024-06-21 17:59:25,784 - root - INFO - Se realizó correctamente el entrenamiento
-2024-06-21 17:59:25,785 - root - INFO - Comienza el testeo
-2024-06-21 17:59:25,794 - root - INFO - Se realizó correctamente el testeo
-2024-06-21 17:59:25,803 - root - INFO - Se guardó correctamente el modelo
+2024-06-22 15:40:16,592 - root - INFO - Se guardo correctamente el log
+2024-06-22 15:40:16,594 - root - INFO - Se creo correctamente la carpeta nueva y el archivo con los parametros
+2024-06-22 15:40:17,269 - root - INFO - Se extrajo correctamente los features
+2024-06-22 15:40:17,272 - root - INFO - Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos
+2024-06-22 15:40:17,273 - root - INFO - Se inicio el modelo correctamente
+2024-06-22 15:40:17,273 - root - INFO - Comienza el entrenamiento
+2024-06-22 15:42:12,212 - root - INFO - Se realizó correctamente el entrenamiento
+2024-06-22 15:42:12,212 - root - INFO - Comienza el testeo
+2024-06-22 15:42:12,240 - root - INFO - Se realizó correctamente el testeo
+2024-06-22 15:42:12,288 - root - INFO - Se guardó correctamente el modelo

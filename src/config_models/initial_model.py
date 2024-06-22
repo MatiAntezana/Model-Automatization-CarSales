@@ -30,10 +30,6 @@ class Initial_Model:
     def train(self, x, y):
         self.model  = self.prev_model.fit(x,y)
         self.best_param = self.model.best_params_
-        # self.model = 
-        # adaboost = AdaBoostRegressor(estimator=grid_result,
-        #                              learning_rate=1)
-        # self.model = adaboost.fit(x, y)
 
 def load_model(model_params):
     file_model = modularization_ruth(f"src/models/{model_params.model}")
