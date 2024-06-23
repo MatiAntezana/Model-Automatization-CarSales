@@ -1,9 +1,9 @@
 model = "Neuronal_Network.py"
-cv = 8
+cv = 10
 params = {
     "activation": ["relu", "tanh"],
-    "solver": ["adam", "lbfgs"],
-    "alpha": [0.001, 0.01],
-    "learning_rate": ["constant", "adaptive"],
-    'max_iter': [500]
+    'solver': ['sgd', 'adam'],
+    'alpha': [0.0001, 0.05],
+    "learning_rate": ["adaptive"],
+    'max_iter': [3000, 5000]
 }

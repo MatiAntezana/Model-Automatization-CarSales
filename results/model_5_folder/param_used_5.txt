@@ -1,4 +1,0 @@
-Files used for model
-Type model: <module 'contain_info' from '/Users/matias/3°AÑO/APRENDIZAJE AUTOMATICO/Proyecto_Final/Model-Automatization-CarSales/configs/model/Model_1.py'>
-Data user: <module 'contain_info' from '/Users/matias/3°AÑO/APRENDIZAJE AUTOMATICO/Proyecto_Final/Model-Automatization-CarSales/configs/data/data_params_5.py'>
-Features user: <module 'contain_info' from '/Users/matias/3°AÑO/APRENDIZAJE AUTOMATICO/Proyecto_Final/Model-Automatization-CarSales/configs/features/features_9.py'>

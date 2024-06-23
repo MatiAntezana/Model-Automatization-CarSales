@@ -1,8 +1,10 @@
 model = "KNN.py"
-cv = 8
+cv = 10
 params = {
     "n_neighbors": [3, 5, 7, 9, 13, 14],
     "weights": ["uniform", "distance"],
     "metric": ["euclidean", "manhattan"],
-    "knn__leaf_size": [20, 30, 40, 50]
+    "algorithm": ["ball_tree", "kd_tree", "brute"],
+    "leaf_size": [20, 30, 40, 50],
+    "p": [1, 2]
 }
