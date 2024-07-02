@@ -316,7 +316,7 @@ def transform_transmision_for_price(features):
     return features
 
 def transform_tipo_vendedor_for_price(features):
-    list_max_to_min_price = ['tienda', 'concesionaria', 'particular']
+    list_max_to_min_price = ['concesionaria', 'tienda', 'particular']
     size_list = len(list_max_to_min_price) 
     order_list = {cat: (size_list - i) / size_list
                   for i, cat in enumerate(list_max_to_min_price)}

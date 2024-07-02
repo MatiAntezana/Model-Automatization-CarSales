@@ -5,4 +5,4 @@ param_sets = {
     "Set_Test":0.10,
 }
 path_dataset = "dataset/pf_suvs_i302_1s2024.csv"
-seed_random = 12
+seed_random = 153

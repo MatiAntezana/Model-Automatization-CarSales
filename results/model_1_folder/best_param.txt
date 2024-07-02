@@ -1,0 +1,1 @@
+Best Params = {'max_depth': 6, 'max_features': None, 'min_samples_leaf': 4, 'min_samples_split': 4, 'n_estimators': 150, 'oob_score': True, 'random_state': 42}
