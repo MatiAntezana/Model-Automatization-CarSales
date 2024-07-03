@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OrdinalEncoder
 
 def transform_dolar_to_pesos(features, features_used):
     for index, value in features["Moneda"].items():
@@ -22,13 +23,11 @@ def transform_price(features, features_used):
         features = transform_dolar_to_pesos(features, features_used)
     return features
 
-def trasform_years_used(features, features_used):
-    if features_used.transform_years == True:
-        features["Años de uso"] = features["Año"].apply(lambda x: 2024 - x)
-        features.drop(["Año"], axis=1, inplace=True)
-        features = features[features["Años de uso"] >= 0]
-        return features
-    else: return features
+def trasform_years_used(features):
+    features["Años de uso"] = features["Año"].apply(lambda x: 2024 - x)
+    features.drop(["Año"], axis=1, inplace=True)
+    features = features[features["Años de uso"] >= 0]
+    return features
 
 def extract_kilometres(features):
     kilometres = features["Kilómetros"].str.split(" ", expand=True)
@@ -149,7 +148,7 @@ def prob_model_for_marca(features):
     conteo_versiones_por_marca = features.groupby("Marca")["Modelo"].count().reset_index()
     conteo_versiones_por_marca.columns = ["Marca", "conteo_versiones"]
     df = features.merge(conteo_versiones_por_marca, on="Marca")
-    df["probabilidad"] = 1 / df["conteo_versiones"]
+    features["probabilidad"] = 1 / features["conteo_versiones"]
     df.drop(columns=["conteo_versiones"], inplace=True)
     return df
 
@@ -224,7 +223,6 @@ def transform_transm_proba(features, features_used):
 def transform_inverse_scalar(column):
     min_value = column.min()
     return 1 - (column - min_value) / (column.max() - min_value)
-
 
 def transform_marca_for_price(features):
     # Ordenamos de mayor a menor las marcas con precios más caros promedio
@@ -342,7 +340,10 @@ def transform_puertas_for_price(features):
     return features
 
 def transform_years_to_price(features):
-    list_max_to_min_price = [0.0, 1.0, 2.0, 3.0, 5.0, 4.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 17.0, 16.0, 13.0, 20.0, 15.0, 14.0, 21.0, 19.0, 24.0, 18.0, 23.0, 31.0, 28.0, 30.0, 29.0, 27.0, 22.0, 26.0, 25.0, 32.0, 37.0, 33.0]
+    list_max_to_min_price = [0.0, 1.0, 2.0, 3.0, 5.0, 4.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 
+                             12.0, 17.0, 16.0, 13.0, 20.0, 15.0, 14.0, 21.0, 19.0, 24.0, 18.0, 
+                             23.0, 31.0, 28.0, 30.0, 29.0, 27.0, 22.0, 26.0, 25.0, 32.0, 37.0, 
+                             33.0]
     size_list = len(list_max_to_min_price) 
     order_list = {cat: (size_list - i) / size_list
                   for i, cat in enumerate(list_max_to_min_price)}
@@ -355,7 +356,13 @@ def transform_years_to_price(features):
     return features
 
 def transform_marca_to_price(features):
-    list_max_to_min_price = ['DS', 'Abarth', 'Jetour', 'Haval', 'Volkswagen', 'Citroën', 'Chevrolet', 'Nissan', 'Peugeot', 'Fiat', 'Jeep', 'Renault', 'Toyota', 'Ford', 'BAIC', 'Chery', 'Geely', 'Kia', 'JAC', 'Hyundai', 'Honda', 'Lifan', 'Dodge', 'Lexus', 'Isuzu', 'Volvo', 'Ssangyong', 'Suzuki', 'Audi', 'BMW', 'Daihatsu', 'Mitsubishi', 'Land Rover', 'Mercedes-Benz', 'Subaru', 'Porsche', 'Sandero', 'Alfa Romeo', 'Jaguar', 'MINI']
+    list_max_to_min_price = ['DS', 'Abarth', 'Jetour', 'Haval', 'Volkswagen', 'Citroën', 
+                             'Chevrolet', 'Nissan', 'Peugeot', 'Fiat', 'Jeep', 'Renault', 
+                             'Toyota', 'Ford', 'BAIC', 'Chery', 'Geely', 'Kia', 'JAC', 
+                             'Hyundai', 'Honda', 'Lifan', 'Dodge', 'Lexus', 'Isuzu', 'Volvo', 
+                             'Ssangyong', 'Suzuki', 'Audi', 'BMW', 'Daihatsu', 'Mitsubishi', 
+                             'Land Rover', 'Mercedes-Benz', 'Subaru', 'Porsche', 'Sandero', 
+                             'Alfa Romeo', 'Jaguar', 'MINI']
 
     size_list = len(list_max_to_min_price) 
     order_list = {cat: (size_list - i) / size_list
@@ -372,7 +379,7 @@ def apply_probs_price(features, features_used):
     # Transforma kilometros, Marca_Modelo, combustible, 
     # transmisión, tipo de vendedor, puertas, años de uso
     if features_used.apply_prob_price == True:
-        features['Kilómetros'] = transform_inverse_scalar(features["Kilómetros"])
+        # features['Kilómetros'] = transform_inverse_scalar(features["Kilómetros"])
         # features = transform_marca_for_price(features)
         # features = transform_features_color_2(features) # Antes de transformar en número
         # features = transform_color_for_price(features)
@@ -385,6 +392,83 @@ def apply_probs_price(features, features_used):
         return features
     else: return features
 
+def hapus_outliers(data, x): 
+    # Eliminamos outliers usando el rango IQR
+    Q1 = data[x].quantile(0.25) 
+    Q3 = data[x].quantile(0.75) 
+    IQR = Q3 - Q1 
+    data = data[~((data[x] < (Q1 - 3 * IQR)) | (data[x] > (Q3 + 3 * IQR)))] 
+    return data
+
+def marca_price_for_mercado(features):
+    marcas = [
+    "Porsche", "Jaguar", "Land Rover", "Mercedes-Benz", "BMW", "Audi", "Lexus", 
+    "Volvo", "MINI", "Jeep", "DS", "Alfa Romeo", "Subaru", "Mitsubishi", "Honda", 
+    "Toyota", "Hyundai", "Kia", "Nissan", "Volkswagen", "Ford", "Chevrolet", 
+    "Renault", "Peugeot", "Citroën", "Fiat", "Suzuki", "Chery", "Geely", "JAC", 
+    "BAIC", "Haval", "Jetour", "Lifan", "Dodge", "Isuzu", "Daihatsu", "Ssangyong"
+    ]
+    size_list = len(marcas) 
+    order_list = {cat: (size_list - i) / size_list
+                  for i, cat in enumerate(marcas)}
+
+    def map_feature_to_valor(cat):
+        return order_list.get(cat, 0)
+
+    features['Marca'] = features['Marca'].map(map_feature_to_valor)
+    return features
+
+
+def tipo_combustible_price_for_mercado(features):
+    tipos_combustible = [
+    "Eléctrico", "Híbrido/Diesel", "Híbrido", "Híbrido/Nafta", 
+    "Nafta", "Diésel", "GNC", "Nafta/GNC"
+    ]
+    size_list = len(tipos_combustible) 
+    order_list = {cat: (size_list - i) / size_list
+                  for i, cat in enumerate(tipos_combustible)}
+
+    def map_feature_to_valor(cat):
+        return order_list.get(cat, 0)
+
+    features['Tipo de combustible'] = features['Tipo de combustible'].map(map_feature_to_valor)
+    return features
+
+def apply_method_hot_encoder(features, features_used):
+    if features_used.apply_method_hot_encoder == True:
+        features = marca_price_for_mercado(features)
+        features = tipo_combustible_price_for_mercado(features)
+        # tipo_de_transmisión = pd.get_dummies(features['Transmisión'], drop_first=True) 
+        # tipo_vendedor = pd.get_dummies(features['Tipo de vendedor'], drop_first=True) 
+        
+        # puertas_del_vehículo = pd.get_dummies(features['Puertas'], drop_first=True) 
+        # features = features.drop(["Marca", 
+        #       'Tipo de combustible', 
+        #       'Transmisión', 
+        #       'Tipo de transmisión', 
+        #       'Tipo de vendedor', 
+        #       'Puertas'], axis=1)
+        
+        new_features = pd.concat([
+                features["Marca"],
+                features["Tipo de combustible"],
+                features["Transmisión"],
+                features["Tipo de vendedor"],
+                features["Puertas"],
+                features["Años de uso"],
+                features["Kilómetros"],
+                features["Precio"],
+                features["Marca Original"]
+                ], axis=1)
+
+        cat_features = ["Transmisión", "Tipo de vendedor", "Puertas"]
+        encoder = OrdinalEncoder() 
+        encoder.fit(new_features[cat_features]) 
+        new_features[cat_features] = pd.DataFrame(encoder.transform(new_features[cat_features]),columns=cat_features) 
+        
+        return new_features
+    else: return features
+
 def extract_features(path_dataset, features_used):
     # Obligatorios
     features = pd.read_csv(path_dataset)
@@ -393,8 +477,13 @@ def extract_features(path_dataset, features_used):
     features = transform_price(features, features_used)
     features = extract_kilometres(features)
 
+    features = hapus_outliers(features, 'Precio')
+    features = trasform_years_used(features)
+
+    features['Marca Original'] = features['Marca']
+
     # Opcionales
-    features = trasform_years_used(features, features_used)
+
     features = transform_categ_features(features, features_used)
     features = standar_features(features, features_used)
 
@@ -404,10 +493,14 @@ def extract_features(path_dataset, features_used):
     features = transform_transm_proba(features, features_used)
 
     features = apply_probs_price(features, features_used)
+
+    features = apply_method_hot_encoder(features, features_used)
     # features = scalar_kilometres(features)
 
     # Obligatorio
     features = delete_columns(features, features_used)
+
+    features = features.dropna()
 
     print(features)
     print(features.columns)

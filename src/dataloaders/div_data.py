@@ -1,29 +1,64 @@
 import logging
-from src.utils.trasform_ruth_module import modularization_ruth
-from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split,GridSearchCV
-import numpy as np
+import pandas as pd
 
-def get_dataloader(features, data_used, features_used, type_set, initial_index):
-    # Obtiene el set especifico, los mezcla y aplica la función correspondiente
-    # de modificación de datos
-    param_sets = data_used.param_sets
-    size_dataset = len(features)
+def assign_drop_sets(set_1, set_2, type_marca, cant_marca_set_1):
+    list_muestras = set_2[set_2['Marca Original'] == type_marca]
+    index_test = list_muestras.index[0]
+            
+    muestra_drop_set_2 = set_2.loc[index_test]
+    set_2 = set_2.drop(index=index_test)
+            
+    key_remplace_set_1 = None
+    for key_, value_ in cant_marca_set_1.items():
+        if value_ > 1:
+            key_remplace_set_1 = key_
+            cant_marca_set_1[key_] -= 1
+            break
 
-    size_set = int(size_dataset * param_sets[type_set])
-    final_index = initial_index + size_set
+    index_train = set_1[set_1['Marca Original'] == key_remplace_set_1].index[0]
+    muestra_drop_set_1 = set_1.loc[index_train]
 
-    dif_index_size = (size_dataset - 1) - final_index
+    set_1 = set_1.drop(index=index_train)
 
-    if dif_index_size < 0:
-        final_index += dif_index_size
-        logging.info(f"Se realizó la resta del indice en get_dataloader: {final_index}")
-    final_set = features.iloc[initial_index:final_index]
+    set_1 = pd.concat([set_1, muestra_drop_set_2], axis=0)
+    set_2 = pd.concat([set_2, muestra_drop_set_1], axis=0)
 
-    seed = data_used.seed_random
+    return set_1, set_2, cant_marca_set_1
 
-    final_set = final_set.sample(frac=1, random_state=seed).reset_index(drop=True)
-
+def variability_set(set_1, set_2, original_features, cat_unicas, condition):
+    type_marca_types = original_features['Marca Original'].unique()
     
+    cant_marca_set_1 = set_1['Marca Original'].value_counts().to_dict()
 
-    return final_set, final_index
+    for type_marca in type_marca_types:
+
+        if type_marca not in set_1['Marca Original'].values:
+
+            if type_marca in cat_unicas:
+                if condition == True:
+                    set_1, set_2, cant_marca_set_1 = assign_drop_sets(set_1, set_2, type_marca, cant_marca_set_1)
+            else:
+                set_1, set_2, cant_marca_set_1 = assign_drop_sets(set_1, set_2, type_marca, cant_marca_set_1)
+
+    return set_1, set_2
+
+def get_sets(features, data_used):
+    X = features.drop(["Precio"],axis=1)
+    Y = features["Precio"]
+    param_sets = data_used.param_sets
+
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = param_sets["Set_Test"], random_state=data_used.seed_random)
+
+    train_set = pd.concat([X_train, Y_train], axis=1)
+
+    test_set = pd.concat([X_test, Y_test], axis=1)
+
+    cat_unicas = features['Marca Original'].value_counts()[features['Marca Original'].value_counts() == 1].index.tolist()
+
+    train_set, test_set = variability_set(train_set, test_set, features, cat_unicas, True)
+
+    train_set = train_set.drop("Marca Original",axis=1)
+    test_set = test_set.drop("Marca Original",axis=1)
+
+    return train_set, test_set

@@ -1,14 +1,14 @@
 import logging
 
 from src.utils.control_result_paths import new_path_results, metadata_save
-from src.dataloaders.funcs_metadata import load_metadata
 from src.features.features_extract import extract_features
-from src.dataloaders.div_data import get_dataloader
+from src.dataloaders.div_data import get_sets
 from src.train_and_test.train import train_model
 from src.train_and_test.test import test_model
 
 from src.config_models.initial_model import load_model
 from src.config_models.save_model import model_save_in_folder, model_save_result, model_save_best_params_of_params
+from src.dataloaders.funcs_metadata import apply_normalization
 
 def run_experiment(model_params, data_used, features_used):
 
@@ -21,10 +21,11 @@ def run_experiment(model_params, data_used, features_used):
     logging.info("Se extrajo correctamente los features")
 
     # Divide los sets
-    set_train, final_index = get_dataloader(features, data_used, features_used, "Set_Train", 0)
-    set_valid, final_index = get_dataloader(features, data_used, features_used,"Set_Valid", final_index)
-    set_test,_ = get_dataloader(features, data_used, features_used, "Set_Test", final_index)
+    set_train, set_test = get_sets(features, data_used)
     logging.info("Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos")
+
+    set_train, set_test = apply_normalization(set_train, set_test, features_used)
+    logging.info("Se aplicó correctamente la normalización (si se tenia que hacer) de los datos")
 
     model = load_model(model_params)
     logging.info("Se inicio el modelo correctamente")
