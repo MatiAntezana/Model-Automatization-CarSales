@@ -24,12 +24,9 @@ def new_path_results(type_model_user, data_user, features_user):
     contain_file_info += f"Features user: {features_user}\n"
     
     os.makedirs(new_folder_route)
-    file_txt_folder = os.path.join(new_folder_route, f"param_used_{new_number}.txt")
+    file_txt_folder = os.path.join(new_folder_route, f"file_param_used_{new_number}.txt")
     
     with open(file_txt_folder, 'w') as file_txt:
         file_txt.write(contain_file_info)
 
     return new_folder_route
-
-def metadata_save(metadata):
-    return "a"

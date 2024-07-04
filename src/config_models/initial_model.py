@@ -18,7 +18,6 @@ class Initial_Model:
         self.RMSE = None
         self.r2 = None
         self.best_param = None
-        self.best_score = None
 
     def evaluate_model(self, x_test, y_test):
         y_pred = self.model.predict(x_test)

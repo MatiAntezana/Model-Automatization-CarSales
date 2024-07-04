@@ -1,26 +1,32 @@
+apply_normalization_kilometros = True
+# Diferentes aplicaciones independientes
+transform_proba = False
+transform_color = False
+relation_marca_version = False
+
+apply_method_hot_encoder = True
+
+price_type = "Dolar"
+value_dolar = 1040
+
 features_delete = [
-    "Motor",
     "Modelo",
     "Versión",
     "Tipo de carrocería",
     "Título",
+    "Moneda",
     "Con cámara de retroceso",
-    "Color",
-    "Moneda"
+    "Motor",
+    "Color"
 ]
 
 features_one_hot = [
-    "Marca",
-    "Tipo de combustible",
-    "Transmisión",
-    "Tipo de vendedor"
+
+]
+
+features_label_encoder = [
+
 ]
 
 features_standar = [
-    "Kilómetros"
 ]
-relation_marca_version = True
-transform_color = True
-
-price_type = "Dolar"
-value_dolar = 1040

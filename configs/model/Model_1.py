@@ -1,3 +1,3 @@
 model = "Linear_Regression.py"
-cv = 8
+cv = 10
 params = {}

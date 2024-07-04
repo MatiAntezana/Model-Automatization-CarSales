@@ -1,6 +1,0 @@
-2024-07-02 21:38:15,403 - root - INFO - Se guardo correctamente el log
-2024-07-02 21:38:15,405 - root - INFO - Se creo correctamente la carpeta nueva y el archivo con los parametros
-2024-07-02 21:38:16,069 - root - INFO - Se extrajo correctamente los features
-2024-07-02 21:38:16,088 - root - INFO - Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos
-2024-07-02 21:38:16,120 - root - INFO - Se inicio el modelo correctamente
-2024-07-02 21:38:16,120 - root - INFO - Comienza el entrenamiento

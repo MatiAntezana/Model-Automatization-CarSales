@@ -1,6 +1,6 @@
 import logging
 
-from src.utils.control_result_paths import new_path_results, metadata_save
+from src.utils.control_result_paths import new_path_results
 from src.features.features_extract import extract_features
 from src.dataloaders.div_data import get_sets
 from src.train_and_test.train import train_model
@@ -34,14 +34,11 @@ def run_experiment(model_params, data_used, features_used):
     train_model(model, set_train)
     logging.info("Se realizó correctamente el entrenamiento")
 
-    print("El score llegado es:",model.best_score)
-    print("Los mejores param son:",model.best_param)
-
     logging.info("Comienza el testeo")
     test_model(model, set_test)
     logging.info("Se realizó correctamente el testeo")
 
-    model_save_result(model, route_folder)
+    model_save_result(model, route_folder, set_test)
 
     model_save_best_params_of_params(model, route_folder)
 

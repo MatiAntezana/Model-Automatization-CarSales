@@ -1,28 +1,32 @@
-features_delete = [
-    "Marca",
-    "Modelo",
-    "Versión",
-    "Año",
-    "Tipo de carrocería",
-    "Título",
-    "Motor",
-    "Con cámara de retroceso",
-    "Color",
-    "Moneda"
-]
-
-features_one_hot = [
-    "Tipo de combustible",
-    "Transmisión",
-    "Tipo de vendedor"
-]
-
-features_standar = [
-    "Kilómetros"
-]
-
-relation_marca_version = False
+apply_normalization_kilometros = False
+# Diferentes aplicaciones independientes
+transform_proba = False
 transform_color = False
+relation_marca_version = False
+
+apply_method_hot_encoder = True
 
 price_type = "Dolar"
 value_dolar = 1040
+
+features_delete = [
+    "Modelo",
+    "Versión",
+    "Tipo de carrocería",
+    "Título",
+    "Moneda",
+    "Con cámara de retroceso",
+    "Motor",
+    "Color"
+]
+
+features_one_hot = [
+
+]
+
+features_label_encoder = [
+
+]
+
+features_standar = [
+]
