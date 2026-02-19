@@ -1,0 +1,49 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Key Results from Report</title>
+  <desc id="desc">Summary of the most important model evaluation findings reported in the final project report.</desc>
+
+  <rect x="0" y="0" width="1200" height="680" fill="#0b1324"/>
+  <rect x="32" y="24" width="1136" height="632" rx="14" fill="#0f1b31" stroke="#2f3c55" stroke-width="2"/>
+
+  <text x="72" y="92" fill="#f3f6fb" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">
+    Model Evaluation Highlights (Report Summary)
+  </text>
+  <text x="72" y="128" fill="#cfd8e6" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    Source: Antezana_Giacommeti_report.pdf
+  </text>
+
+  <line x1="72" y1="152" x2="1128" y2="152" stroke="#33435f" stroke-width="2"/>
+
+  <rect x="72" y="186" width="340" height="196" rx="10" fill="#15233b" stroke="#2e4468" stroke-width="2"/>
+  <text x="96" y="228" fill="#e8eef9" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Models Compared</text>
+  <text x="96" y="270" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">- Random Forest</text>
+  <text x="96" y="305" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">- Linear Regression</text>
+  <text x="96" y="340" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">- KNN</text>
+  <text x="96" y="375" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">- Extra Trees Regressor</text>
+
+  <rect x="430" y="186" width="334" height="196" rx="10" fill="#15233b" stroke="#2e4468" stroke-width="2"/>
+  <text x="454" y="228" fill="#e8eef9" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Best Model</text>
+  <text x="454" y="280" fill="#8be9b7" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700">Random Forest</text>
+  <text x="454" y="322" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">Selected as top performer on</text>
+  <text x="454" y="352" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">test-set MAE and RMSE analysis.</text>
+
+  <rect x="782" y="186" width="346" height="196" rx="10" fill="#15233b" stroke="#2e4468" stroke-width="2"/>
+  <text x="806" y="228" fill="#e8eef9" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Prediction Behavior</text>
+  <text x="806" y="276" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">Predicted vs real prices show</text>
+  <text x="806" y="307" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">good alignment on the test set,</text>
+  <text x="806" y="338" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">with larger errors concentrated</text>
+  <text x="806" y="369" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="21">in less frequent/extreme cases.</text>
+
+  <rect x="72" y="410" width="1056" height="214" rx="10" fill="#132138" stroke="#2e4468" stroke-width="2"/>
+  <text x="96" y="452" fill="#e8eef9" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700">Interpretation from the Report</text>
+
+  <text x="96" y="492" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    - Random Forest provides the most balanced error profile among evaluated models.
+  </text>
+  <text x="96" y="528" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    - MAE and RMSE together support model selection beyond a single metric.
+  </text>
+  <text x="96" y="564" fill="#d4dded" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    - Results are strong overall, but tail scenarios still leave room for improvement.
+  </text>
+</svg>

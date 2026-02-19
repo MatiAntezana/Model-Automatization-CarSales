@@ -17,18 +17,34 @@
   </tr>
 </table>
 
-## Project Summary
-This repository contains the final project developed for the Machine Learning course of the AI Engineer program at the University of San Andres (Argentina).
+## Introduction
+This repository contains the final project developed for the Machine Learning course in the AI Engineer program at the University of San Andres (Argentina).
 
-The objective is to train and evaluate regression models that estimate used-car prices from structured marketplace data.
+The project goal is to estimate used-car prices using supervised regression models and a reproducible experimentation pipeline.
 
-## Key Results (from report)
-Source: [`Antezana_Giacommeti_report.pdf`](Antezana_Giacommeti_report.pdf)
+## Dataset Used
+- File: `dataset/pf_suvs_i302_1s2024.csv`
+- Size: 22,377 rows and 16 columns
+- Target variable: `Price` (original column: `Precio`)
+- Main attributes: brand, model, year, version, fuel type, transmission, mileage, currency, seller type, and related listing metadata.
 
-- The report compares multiple predictive models on the same train/test protocol and evaluation metrics.
-- **Random Forest** is identified as the best-performing model on the test set.
-- According to the report discussion, Random Forest achieves stronger overall behavior in both **MAE** and **RMSE** comparisons.
-- The predicted-vs-real price analysis shows better alignment for the selected model, while the report also highlights room for improvement on less frequent patterns and extreme cases.
+## Data Treatment (Simplified)
+Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezana_Giacommeti_report.pdf), the preprocessing stage focused on:
+
+- Cleaning irregular values and correcting inconsistent records.
+- Reviewing missing data and preserving useful variables for prediction.
+- Detecting and controlling outliers using quartile-based criteria (Q1/Q3), especially for price and mileage.
+- Preparing data to reduce overfitting risk and improve model robustness.
+- Splitting data into train/test sets for model comparison.
+
+## Key Results from the Report
+![Key report results](assets/report_results_summary.svg)
+
+Most important conclusions reported:
+- Four models were compared: Random Forest, Linear Regression, KNN, and Extra Trees Regressor.
+- Random Forest was selected as the best-performing model on the test set.
+- MAE and RMSE were used jointly for selection, with Random Forest showing the strongest overall balance.
+- Predicted-vs-real behavior is good in general, while errors increase in less frequent or extreme-value cases.
 
 ## Authors
 - Antezana
