@@ -1,12 +1,17 @@
 import numpy as np
 
-def transform_dolar_to_pesos(features_used, features):
-    for index, value in features["Moneda"].items():
-        if value == "U$S":
-            features.at[index, "Precio"] = np.float64(features_used.value_dolar * features.at[index, "Precio"])
-            features.at[index, "Moneda"] = "$"
+
+def convert_usd_to_ars(feature_config, features):
+    """Convert USD-denominated prices into ARS using the configured exchange rate."""
+    for row_index, currency in features["Currency"].items():
+        if currency == "U$S":
+            ars_price = np.float64(feature_config.usd_to_ars_rate * features.at[row_index, "Price"])
+            features.at[row_index, "Price"] = ars_price
+            features.at[row_index, "Currency"] = "$"
 
     return features
 
-def data_modify(features_used, features):
-    features = transform_dolar_to_pesos(features_used, features)
+
+def data_modify(feature_config, features):
+    """Apply configured feature-level transformations to a dataframe split."""
+    return convert_usd_to_ars(feature_config, features)

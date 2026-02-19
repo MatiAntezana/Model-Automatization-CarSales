@@ -1,4 +1,8 @@
-def test_model(model, set_test):
-    X = set_test.drop('Precio', axis=1)
-    Y = set_test['Precio']
-    model.evaluate_model(X, Y)
+TARGET_COLUMN = "Price"
+
+
+def test_model(model, test_set):
+    """Evaluate a trained model on the provided test dataframe."""
+    features = test_set.drop(TARGET_COLUMN, axis=1)
+    target = test_set[TARGET_COLUMN]
+    model.evaluate_model(features, target)

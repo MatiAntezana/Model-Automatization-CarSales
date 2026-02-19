@@ -1,7 +1,9 @@
-import joblib
 import os
 
-def model_save_in_folder(model, route_folder):
-    route_model = os.path.join(route_folder, 'model.pkl')
-    joblib.dump(model.model, route_model)
+import joblib
 
+
+def save_model_to_folder(model, results_folder):
+    """Persist the trained model pipeline artifact into the results folder."""
+    model_path = os.path.join(results_folder, "model.pkl")
+    joblib.dump(model.model, model_path)

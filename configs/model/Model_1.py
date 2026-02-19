@@ -1,1 +1,1 @@
-model = "Linear_Regression.py"
+model = "linear_regression.py"

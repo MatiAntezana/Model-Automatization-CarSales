@@ -1,17 +1,16 @@
 import os
-import logging
 
-def define_n_log():
-    log_directory = os.path.join("..", "Model-Automatization-CarSales", "logs")
 
-    archivos = os.listdir(log_directory)
+def define_log_filename():
+    """Return the next sequential log filename inside the local logs folder."""
+    log_directory = "logs"
+    os.makedirs(log_directory, exist_ok=True)
 
-    archivos_con_formato = [archivo for archivo in archivos if archivo.startswith('loger_') and archivo.endswith('.log')]
+    existing_files = os.listdir(log_directory)
+    matching_files = [name for name in existing_files if name.startswith("logger_") and name.endswith(".log")]
 
-    if not archivos_con_formato:
-        return "loger_1.log"
+    if not matching_files:
+        return "logger_1.log"
 
-    numeros = [int(nombre_archivo.split('_')[1].split('.')[0]) for nombre_archivo in archivos_con_formato]
-
-    max_n = max(numeros)
-    return f"loger_{max_n + 1}.log"
+    file_numbers = [int(name.split("_")[1].split(".")[0]) for name in matching_files]
+    return f"logger_{max(file_numbers) + 1}.log"

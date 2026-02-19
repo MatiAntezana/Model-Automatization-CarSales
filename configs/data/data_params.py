@@ -1,8 +1,8 @@
-# Porcentajes
-param_sets = {
-    "Set_Train":0.70, 
-    "Set_Valid":0.00,
-    "Set_Test":0.30,
+split_ratios = {
+    "train": 0.70,
+    "valid": 0.00,
+    "test": 0.30,
 }
-path_dataset = "dataset/pf_suvs_i302_1s2024.csv"
-seed_random = 12
+
+dataset_path = "dataset/pf_suvs_i302_1s2024.csv"
+random_seed = 12

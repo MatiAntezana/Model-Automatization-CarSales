@@ -1,41 +1,40 @@
 import logging
 
-from src.utils.control_result_paths import new_path_results, metadata_save
-from src.dataloaders.funcs_metadata import load_metadata
+from src.dataloaders.split_data import get_data_split
 from src.features.features_extract import extract_features
-from src.dataloaders.div_data import get_dataloader
-from src.train_and_test.train import train_model
-from src.train_and_test.test import test_model
-
 from src.models.initial_model import load_model
-from src.models.save_model import model_save_in_folder
+from src.models.save_model import save_model_to_folder
+from src.train_and_test.test import test_model
+from src.train_and_test.train import train_model
+from src.utils.control_result_paths import create_results_folder
 
-def run_experiment(model_params, data_used, features_used):
 
-    # Te crea la carpeta
-    route_folder = new_path_results(model_params, data_used, features_used)
-    logging.info("Se creo correctamente la carpeta nueva y el archivo con los parametros")
+def run_experiment(model_config, data_config, feature_config) -> None:
+    """Run the complete training and evaluation pipeline for one experiment."""
+    results_folder = create_results_folder(model_config, data_config, feature_config)
+    logging.info("Results folder and configuration summary created successfully.")
 
-    # Extrae los features
-    features = extract_features(data_used.path_dataset, features_used.features_use)
-    logging.info("Se extrajo correctamente los features")
+    features = extract_features(data_config.dataset_path, feature_config.selected_features)
+    logging.info("Feature extraction completed successfully.")
 
-    # Divide los sets
-    set_train, final_index = get_dataloader(features, data_used, features_used, "Set_Train", 0)
-    set_valid, final_index = get_dataloader(features, data_used, features_used,"Set_Valid", final_index)
-    set_test,_ = get_dataloader(features, data_used, features_used, "Set_Test", final_index)
-    logging.info("Se dividio correctamente los sets y aplicó a todos la función de trasformación de datos")
+    train_set, final_index = get_data_split(features, data_config, feature_config, "train", 0)
+    validation_set, final_index = get_data_split(features, data_config, feature_config, "valid", final_index)
+    test_set, _ = get_data_split(features, data_config, feature_config, "test", final_index)
+    logging.info("Dataset splitting and transformations completed successfully.")
 
-    model = load_model(model_params)
-    logging.info("Se inicio el modelo correctamente")
+    if not validation_set.empty:
+        logging.info("Validation split generated with %d rows.", len(validation_set))
 
-    logging.info("Comienza el entrenamiento")
-    train_model(model, set_train)
-    logging.info("Se realizó correctamente el entrenamiento")
+    model = load_model(model_config)
+    logging.info("Model instance created successfully.")
 
-    logging.info("Comienza el testeo")
-    test_model(model, set_test)
-    logging.info("Se realizó correctamente el testeo")
+    logging.info("Starting training stage.")
+    train_model(model, train_set)
+    logging.info("Training stage completed successfully.")
 
-    model_save_in_folder(model, route_folder)
-    logging.info("Se guardó correctamente el modelo")
+    logging.info("Starting testing stage.")
+    test_model(model, test_set)
+    logging.info("Testing stage completed successfully.")
+
+    save_model_to_folder(model, results_folder)
+    logging.info("Model artifact saved successfully.")

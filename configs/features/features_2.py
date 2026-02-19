@@ -1,18 +1,19 @@
-features_use = [
-    'Marca',
-    'Modelo',
-    'Año',
-    'Versión',
-    'Color',
-    'Tipo de combustible',
-    'Puertas',
-    'Transmisión',
-    'Motor',
-    'Tipo de carrocería',
-    'Kilómetros',
-    'Moneda',
-    'Tipo de vendedor',
-    'Precio'
+selected_features = [
+    "Brand",
+    "Model",
+    "Year",
+    "Version",
+    "Color",
+    "Fuel Type",
+    "Doors",
+    "Transmission",
+    "Engine",
+    "Body Type",
+    "Mileage",
+    "Currency",
+    "Seller Type",
+    "Price",
 ]
-file_modify_data = "Modify_data.py"
-value_dolar = 866.46
+
+data_transformer_file = "modify_data.py"
+usd_to_ars_rate = 866.46
