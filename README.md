@@ -37,27 +37,6 @@ Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezan
 - Harmonizing currency values for consistent price modeling.
 - Splitting data into train/test sets for fair model comparison.
 
-## Key Results from the Report
-The following figures are original plots used in the report:
-
-### Test RMSE Comparison
-<img src="assets/report_images/report_rmse_annotated.png" alt="RMSE comparison from report with axis labels" width="950" />
-
-### Test MAE Comparison
-<img src="assets/report_images/report_mae_annotated.png" alt="MAE comparison from report with axis labels" width="950" />
-
-### Predicted vs Real Prices
-<img src="assets/report_images/report_real_vs_predicted_annotated.png" alt="Predicted versus real prices from report with axis labels" width="950" />
-
-### Price vs Mileage Analysis
-<img src="assets/report_images/report_price_vs_mileage_annotated.png" alt="Price versus mileage from report with axis labels" width="950" />
-
-Main findings reported:
-- Four models were compared: Random Forest, Linear Regression, KNN, and Extra Trees Regressor.
-- Random Forest was selected as the best-performing model on the test set.
-- MAE and RMSE were used jointly for model selection, with Random Forest showing the strongest overall balance.
-- Predicted-vs-real behavior is generally strong, while larger errors concentrate in less frequent or extreme-value cases.
-
 ## Authors
 - Antezana
 - Giacometti
