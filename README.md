@@ -28,7 +28,7 @@ The project goal is to estimate used-car prices using supervised regression mode
 - Target variable: `Price` (original column: `Precio`)
 - Main attributes: brand, model, year, version, fuel type, transmission, mileage, currency, seller type, and related listing metadata.
 
-## Data Treatment (Simplified)
+## Data Treatment
 Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezana_Giacommeti_report.pdf), the preprocessing stage focused on:
 
 - Cleaning irregular values and correcting inconsistent records.
