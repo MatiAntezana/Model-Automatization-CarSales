@@ -38,8 +38,8 @@ Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezan
 - Splitting data into train/test sets for fair model comparison.
 
 ## Authors
-- Antezana
-- Giacometti
+- Matias Luciano Antezana
+- Mateo Giacometti
 
 ## Repository Structure
 - `main.py`: CLI entrypoint to run experiments.
