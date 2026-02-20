@@ -34,17 +34,39 @@ Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezan
 - Cleaning irregular values and correcting inconsistent records.
 - Reviewing missing data and preserving useful variables for prediction.
 - Detecting and controlling outliers using quartile-based criteria (Q1/Q3), especially for price and mileage.
-- Preparing data to reduce overfitting risk and improve model robustness.
-- Splitting data into train/test sets for model comparison.
+- Harmonizing currency values for consistent price modeling.
+- Splitting data into train/test sets for fair model comparison.
 
 ## Key Results from the Report
-![Key report results](assets/report_results_summary.svg)
+The following figures are original plots used in the report:
 
-Most important conclusions reported:
+<table>
+  <tr>
+    <td align="center"><strong>Test RMSE Comparison</strong></td>
+    <td align="center"><strong>Test MAE Comparison</strong></td>
+  </tr>
+  <tr>
+    <td><img src="assets/report_images/report_rmse.png" alt="RMSE comparison from report" width="520" /></td>
+    <td><img src="assets/report_images/report_mae.png" alt="MAE comparison from report" width="520" /></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center"><strong>Predicted vs Real Prices</strong></td>
+    <td align="center"><strong>Price vs Mileage Analysis</strong></td>
+  </tr>
+  <tr>
+    <td><img src="assets/report_images/report_real_vs_predicted.png" alt="Predicted versus real prices from report" width="520" /></td>
+    <td><img src="assets/report_images/report_price_vs_mileage.png" alt="Price versus mileage from report" width="520" /></td>
+  </tr>
+</table>
+
+Main findings reported:
 - Four models were compared: Random Forest, Linear Regression, KNN, and Extra Trees Regressor.
 - Random Forest was selected as the best-performing model on the test set.
-- MAE and RMSE were used jointly for selection, with Random Forest showing the strongest overall balance.
-- Predicted-vs-real behavior is good in general, while errors increase in less frequent or extreme-value cases.
+- MAE and RMSE were used jointly for model selection, with Random Forest showing the strongest overall balance.
+- Predicted-vs-real behavior is generally strong, while larger errors concentrate in less frequent or extreme-value cases.
 
 ## Authors
 - Antezana
