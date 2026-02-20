@@ -40,27 +40,17 @@ Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezan
 ## Key Results from the Report
 The following figures are original plots used in the report:
 
-<table>
-  <tr>
-    <td align="center"><strong>Test RMSE Comparison</strong></td>
-    <td align="center"><strong>Test MAE Comparison</strong></td>
-  </tr>
-  <tr>
-    <td><img src="assets/report_images/report_rmse.png" alt="RMSE comparison from report" width="520" /></td>
-    <td><img src="assets/report_images/report_mae.png" alt="MAE comparison from report" width="520" /></td>
-  </tr>
-</table>
+### Test RMSE Comparison
+<img src="assets/report_images/report_rmse_readable.png" alt="RMSE comparison from report" width="950" />
 
-<table>
-  <tr>
-    <td align="center"><strong>Predicted vs Real Prices</strong></td>
-    <td align="center"><strong>Price vs Mileage Analysis</strong></td>
-  </tr>
-  <tr>
-    <td><img src="assets/report_images/report_real_vs_predicted.png" alt="Predicted versus real prices from report" width="520" /></td>
-    <td><img src="assets/report_images/report_price_vs_mileage.png" alt="Price versus mileage from report" width="520" /></td>
-  </tr>
-</table>
+### Test MAE Comparison
+<img src="assets/report_images/report_mae_readable.png" alt="MAE comparison from report" width="950" />
+
+### Predicted vs Real Prices
+<img src="assets/report_images/report_real_vs_predicted_readable.png" alt="Predicted versus real prices from report" width="950" />
+
+### Price vs Mileage Analysis
+<img src="assets/report_images/report_price_vs_mileage_readable.png" alt="Price versus mileage from report" width="950" />
 
 Main findings reported:
 - Four models were compared: Random Forest, Linear Regression, KNN, and Extra Trees Regressor.
