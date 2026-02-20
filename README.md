@@ -41,16 +41,16 @@ Based on the methodology described in [`Antezana_Giacommeti_report.pdf`](Antezan
 The following figures are original plots used in the report:
 
 ### Test RMSE Comparison
-<img src="assets/report_images/report_rmse_readable.png" alt="RMSE comparison from report" width="950" />
+<img src="assets/report_images/report_rmse_annotated.png" alt="RMSE comparison from report with axis labels" width="950" />
 
 ### Test MAE Comparison
-<img src="assets/report_images/report_mae_readable.png" alt="MAE comparison from report" width="950" />
+<img src="assets/report_images/report_mae_annotated.png" alt="MAE comparison from report with axis labels" width="950" />
 
 ### Predicted vs Real Prices
-<img src="assets/report_images/report_real_vs_predicted_readable.png" alt="Predicted versus real prices from report" width="950" />
+<img src="assets/report_images/report_real_vs_predicted_annotated.png" alt="Predicted versus real prices from report with axis labels" width="950" />
 
 ### Price vs Mileage Analysis
-<img src="assets/report_images/report_price_vs_mileage_readable.png" alt="Price versus mileage from report" width="950" />
+<img src="assets/report_images/report_price_vs_mileage_annotated.png" alt="Price versus mileage from report with axis labels" width="950" />
 
 Main findings reported:
 - Four models were compared: Random Forest, Linear Regression, KNN, and Extra Trees Regressor.
